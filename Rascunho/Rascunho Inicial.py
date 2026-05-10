@@ -1,4 +1,4 @@
-preco_kwh = 1.80
+preco_kwh = 1.97
 tarifa = 0.89
 nome = "Lucas"
 
