@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>FIAP Recharges</title>
+</head>
+<body>
+
+    <h1>Seja Bem-vindo à sua Sessão de Recarga</h1>
+    <h4>Aqui você pode gerenciar suas sessões de recarga do seu carro elétrico</h4>
+    <h5>Preço do kWh = R$ 1,97 <br>Tarifa Fixa = R$ 0,89/kWh</h5>
+
+    <input type="text" id="nome" placeholder="Insira seu nome">
+    <input type="number" id="energia" placeholder="Energia (kWh)">
+    
+    <div class ="botoes">
+    <button onclick="iniciarRecarga()">Iniciar Recarga</button>
+    <button onclick="encerrarRecarga()">Encerrar Recarga</button>
+    <button onclick="mostrarHistorico()">Mostrar Histórico</button>
+    </div>
+
+    <div id="saida"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

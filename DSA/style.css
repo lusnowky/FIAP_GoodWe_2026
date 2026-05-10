@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+
+h1 {
+    font-family: "Chakra Petch", sans-serif;
+    color: #ED145B;
+    text-align: center;
+    font-size: 40px;
+    margin: 10px 0;
+    position: relative;
+    top: 20px;
+}
+
+h4, h5 {
+    font-family: "Libre Baskerville", serif;
+    color: #ffffff;
+    text-align: center;
+
+}
+
+h5 {
+   position: relative;
+   top: 15px;
+}
+
+body {
+    font-family: 'Chakra Petch', sans-serif;
+    color: #ffffff;
+    background-color: #180f38;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+}
+
+button {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ED145B;
+    color: #ffffff;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#saida {
+    margin-top: 20px;
+}
+
+.historico-table {
+    width: 75%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #180f38;
+    color: #ffffff;
+}
+
+.historico-table th,
+.historico-table td {
+    border: 1px solid #cccccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.historico-table th {
+    background-color: #ED145B;
+    color: #ffffff;
+}
+
+.historico-table tbody tr:nth-child(even) {
+    background-color: #180f38;
+}
