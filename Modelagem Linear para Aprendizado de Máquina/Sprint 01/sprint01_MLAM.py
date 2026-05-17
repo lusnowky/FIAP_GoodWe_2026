@@ -1,13 +1,14 @@
 import pandas
 
-# Carregar base
-df = pandas.read_excel("banco_Dados01.xlsx")
+# Base de Dados utilizado = 
+df = pandas.read_excel("baseDados01.xlsx")# Organiza em ordem numérica.
+# Coloca base de dados na variável df
 
 # ----------------------------------- #
 
 # VARIÁVEL QUANTITATIVA DISCRETA --> WAITING TIME
 
-freq_discreta = df['waiting_time'].value_counts().sort_index()
+freq_discreta = df['waiting_time'].value_counts().sort_index() # Conta os valores e organiza em ordem numérica.
 
 print("TABELA DE FREQUÊNCIA - WAITING TIME")
 print(freq_discreta)
@@ -19,9 +20,9 @@ print(freq_discreta)
 
 # VARIÁVEL QUANTITATIVA CONTÍNUA --> ELECTRICITY PRICE
 
-df['electricity_price'] = pandas.to_numeric(df['electricity_price'], errors='coerce')
+df['electricity_price'] = pandas.to_numeric(df['electricity_price'], errors='coerce') # Faz com que os valores obtidos sejam transformados em números
 
-classes = pandas.cut(df['electricity_price'], bins=8)
+classes = pandas.cut(df['electricity_price'], bins=8) # Agrupa os valores e divide o intervalo total em 8 pedaços
 
 freq_continua = classes.value_counts().sort_index()
 
