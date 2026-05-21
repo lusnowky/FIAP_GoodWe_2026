@@ -1,4 +1,5 @@
 # Challenge Good We 2026 - Turma 1CCPY
+## Ciência da Computação
 ### Alunos:
 * Gabriela Caetano - RM: 572738
 * Laura Pícari - RM: 569914
