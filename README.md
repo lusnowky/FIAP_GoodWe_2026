@@ -1,7 +1,6 @@
 # EcoVolt
 ## Challenge GoodWe 2026 - Turma 1CCPY
-### Soluções em Energias Renováveis e Sustentáveis
-### Equipe:
+### Integrantes:
 * Gabriela Caetano - RM: 572738
 * Laura Pícari - RM: 569914
 * Lucas Neves - RM: 572679
