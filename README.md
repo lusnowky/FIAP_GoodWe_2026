@@ -1,4 +1,4 @@
-# Título do Projeto
+# EcoVolt
 ## Challenge GoodWe 2026 - Turma 1CCPY
 ### Soluções em Energias Renováveis e Sustentáveis
 ### Equipe:
