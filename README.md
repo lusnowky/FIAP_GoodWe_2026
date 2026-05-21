@@ -10,7 +10,7 @@
 ***
 
 ## O Problema
-O problema está relacionado à ausência de mecanismos inteligentes em muitos eletropostos comerciais para gerenciar sessões de recarga, controlar o consumo energético e automatizar processos de cobrança e pagamento. Com o crescimento da mobilidade elétrica, essa limitação pode gerar desperdício de energia, sobrecarga da rede elétrica, pouca flexibilidade para os usuários e dificuldades no monitoramento das recargas, tornando necessária a criação de soluções mais eficientes e integradas.
+Ausência de mecanismos inteligentes em muitos eletropostos comerciais para gerenciar sessões de recarga, controlar o consumo energético e automatizar processos de cobrança e pagamento. Com o crescimento da mobilidade elétrica, essa limitação pode gerar desperdício de energia, sobrecarga da rede elétrica, pouca flexibilidade para os usuários e dificuldades no monitoramento das recargas, tornando necessária a criação de soluções mais eficientes e integradas.
 
 ***
 
