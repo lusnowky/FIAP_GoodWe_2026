@@ -25,7 +25,20 @@ O projeto também busca otimizar o gerenciamento dos eletropostos através do re
 
 ***
 
+## Tecnologias Utilizadas
+* Python
+* JavaScript
+* HTML
+* CSS
+* Assembly NASM
+* Jupyter Notebook
+* Kaggle
+* Hugging Face
+* Online GDB
+* Excel
+* Word
 
+***
 
 ## Impactos
 Os impactos esperados da solução envolvem a melhoria da experiência dos usuários, maior eficiência no gerenciamento energético dos eletropostos, redução de desperdícios e automatização dos processos de recarga e cobrança. Além disso, buscamos incentivar o uso contínuo da plataforma através da integração entre tecnologia, praticidade e para enfim gerar um laço de fidelidade entre nós e aos nossos clientes.
