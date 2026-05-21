@@ -1,4 +1,4 @@
-# EcoVolt
+# ChargeVolt
 ## Challenge GoodWe 2026 - Turma 1CCPY
 ### Integrantes:
 * Gabriela Caetano - RM: 572738
