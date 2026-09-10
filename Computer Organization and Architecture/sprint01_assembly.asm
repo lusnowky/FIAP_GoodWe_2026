@@ -1,54 +1,5 @@
 ; ============================================================
 ; ELETROPOSTO - Modulo de Controle em Assembly x86 (NASM)
-;
-; ARQUITETURA: x86 (CISC)
-;   - x86 possui instrucoes complexas que fazem mais trabalho
-;     por instrucao comparado a RISC (MIPS, RISC-V)
-;   - Porem, instrucoes como IMUL e ADD executam em 1-3 ciclos
-;     diretamente na ALU, sem overhead de runtime
-;   - Em RISC-V o mesmo calculo exigiria mais instrucoes,
-;     porem cada uma com custo fixo de 1 ciclo (pipeline limpo)
-;   - Para sistemas embarcados de baixo consumo, RISC-V seria
-;     ideal; aqui usamos x86 por compatibilidade com simuladores
-;
-; PIPELINE x86:
-;   - O processador executa instrucoes em estagios:
-;     Fetch -> Decode -> Execute -> Writeback
-;   - Instrucoes sequenciais sem desvio = pipeline cheio
-;     = maxima eficiencia energetica por ciclo
-;   - Desvios condicionais (jne, jge) causam flush do pipeline
-;     = desperdicam 3-5 ciclos; minimizados neste codigo
-;   - Usamos 'loop' (dec+jnz em 1 instrucao) e 'xor reg,reg'
-;     (1 ciclo, sem leitura de memoria) para reduzir flush
-;
-; CACHE L1:
-;   - Dados em .bss e .data ficam proximos na memoria
-;     = alta localidade espacial = hit rate alto no cache L1
-;   - Cache L1 tipico: latencia 4 ciclos vs RAM: 200+ ciclos
-;   - buf_in, buf_num, buf_cadastro: acessados sequencialmente
-;     = prefetcher do processador carrega antes de precisar
-;   - Sem alocacao dinamica (malloc): evita fragmentacao
-;     e garante dados sempre no mesmo endereco = cache quente
-;
-; CONSUMO ENERGETICO POR INSTRUCAO (estimativa x86):
-;   xor  reg, reg  ->  1 ciclo  ~0.1 nJ  (zeragem rapida)
-;   mov  reg, mem  ->  1-4 ciclos  ~0.3 nJ  (depende do cache)
-;   add  reg, reg  ->  1 ciclo  ~0.1 nJ
-;   imul reg, mem  ->  3 ciclos  ~0.4 nJ  (sem FPU)
-;   div  reg       ->  20-90 ciclos  ~2 nJ  (instrucao cara)
-;   int  0x80      ->  ~100 ciclos  ~5 nJ  (troca de contexto)
-;   Funcao C printf ->  500+ ciclos  ~20 nJ  (evitada aqui)
-;
-;   TOTAL estimado desta aplicacao: ~2000 ciclos por sessao
-;   Equivalente em C com printf/scanf: ~15000+ ciclos
-;   REDUCAO: ~85% menos ciclos = ~85% menos consumo de CPU
-;
-; SUSTENTABILIDADE:
-;   Menos ciclos de CPU = menos calor gerado pelo processador
-;   Menos calor = menos necessidade de resfriamento ativo
-;   Em um eletroposto alimentado por energia solar/eolica,
-;   cada ciclo economizado representa energia renovavel
-;   preservada para carregar mais veiculos eletricos
 ; ============================================================
 
 section .data
