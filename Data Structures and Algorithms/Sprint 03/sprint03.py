@@ -15,9 +15,9 @@ class Sessao:
         self.custo = custo
 
     def __repr__(self):
-        return (f"\nId   Sessão = {self.id}\n"
-                f"Energia Carregada = {self.energia} kWh\n"
-                f"Tempo de Carregamento = {self.tempo:.2f} horas\n"
+        return (f"\nID da sessão = {self.id}\n"
+                f"Energia carregada = {self.energia} kWh\n"
+                f"Tempo de carregamento = {self.tempo:.2f} horas\n"
                 f"Custo total = R$ {self.custo:.2f}\n")
 
 # ================================================================================
@@ -37,7 +37,7 @@ def msgComandos():
 [ 1 ] Nova sessão de recarga
 [ 2 ] Listar sessões
 [ 3 ] Buscar sessão
-[ 4 ] Ordernar sessões
+[ 4 ] Ordenar sessões
 [ 5 ] Estatísticas
 [ 6 ] Encerrar
 """)
@@ -62,7 +62,7 @@ def notNovaEntrada():
     input("Pressione ENTER para continuar...")
     inserirLinha()
 
-    print("\nSelecione um novo comando")
+    print("\nSelecione um novo comando:")
     msgComandos()
 
     comandoAtual = int(input("Insira o comando desejado: "))
@@ -120,4 +120,39 @@ while cmndEsc == 2:
 
 # ================================================================================
 
-# while cmndEsc == 3:
+while cmndEsc == 3:
+    
+    print(f"\nIniciando busca...")
+    sessaoProcurada = int(input("Insira o ID da sessão desejada: "))
+
+    def busca_sequencial(lista, idProcurado):
+        for i in range(len(lista)):
+            if lista[i].id == idProcurado:
+                return i
+        return -1
+    
+    resultadoBusca = busca_sequencial(sessoes, sessaoProcurada)
+
+    if resultadoBusca is not -1:
+        print("Sessão encontrada!")
+        print(sessoes[resultadoBusca])
+        inserirLinha()
+        cmndEsc = notNovaEntrada()
+    else:
+        print("\nSessão não encontrada! Tente novamente ou escolha outro comando")
+        print("[ 1 ] Tentar novamente\n[ 2 ] Escolher outro comando\n[ 3 ] Sair\n")
+        escolhacmndEsc3 = int(input("Selecione a opção desejada: "))
+
+        if escolhacmndEsc3 == 1:
+            cmndEsc = 3
+        elif escolhacmndEsc3 == 2:
+            inserirLinha()
+            cmndEsc = notNovaEntrada()
+        elif escolhacmndEsc3 == 3:
+            exit()
+        else:
+            comandoAtual = int(input("Seleção Inválida! Tente novamente: "))
+            
+# ================================================================================
+
+# while cmndEsc == 4:
