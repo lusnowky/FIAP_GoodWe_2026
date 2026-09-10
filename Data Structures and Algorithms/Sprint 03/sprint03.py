@@ -36,7 +36,7 @@ def msgComandos():
 [ 0 ] Sair
 [ 1 ] Nova sessão de recarga
 [ 2 ] Listar sessões
-[ 3 ] Buscar sesão
+[ 3 ] Buscar sessão
 [ 4 ] Ordernar sessões
 [ 5 ] Estatísticas
 [ 6 ] Encerrar
