@@ -155,4 +155,23 @@ while cmndEsc == 3:
             
 # ================================================================================
 
-# while cmndEsc == 4:
+while cmndEsc == 4:
+    
+    print("\nOrdenando sessões...")
+    print("Critérios de ordenação disponíveis:\n[ 1 ] ID\n[ 2 ] Energia\n[ 3 ] Tempo\n[ 4 ] Custo\n")
+    critOrd = int(input("Selecione o critério desejado: "))
+
+
+
+
+    def bubble_sort_id(sessoes):
+
+        n = len(sessoes)
+
+        for i in range(n):
+            for j in range(n - 1 - i):
+                if sessoes[j].id > sessoes[j + 1].id:
+                    sessoes[j], sessoes[j + 1] = (
+                        sessoes[j + 1],
+                        sessoes[j]
+                    )
