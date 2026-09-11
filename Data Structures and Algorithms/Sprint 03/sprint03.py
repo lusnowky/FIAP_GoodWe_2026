@@ -151,7 +151,7 @@ while cmndEsc == 3:
         elif escolhacmndEsc3 == 3:
             exit()
         else:
-            comandoAtual = int(input("Seleção Inválida! Tente novamente: "))
+            escolhacmndEsc3 = int(input("Seleção Inválida! Tente novamente: "))
             
 # ================================================================================
 
@@ -160,18 +160,129 @@ while cmndEsc == 4:
     print("\nOrdenando sessões...")
     print("Critérios de ordenação disponíveis:\n[ 1 ] ID\n[ 2 ] Energia\n[ 3 ] Tempo\n[ 4 ] Custo\n")
     critOrd = int(input("Selecione o critério desejado: "))
+    vetorOrdenado = []
+
+    def bubbleSortID(lista):
+            n = len(lista)
+    
+            for i in range(n):
+                for j in range(n - 1 - i):
+                    if lista[j].id > lista[j + 1].id:
+                        lista[j], lista[j + 1] = (
+                            lista[j + 1],
+                            lista[j]
+                        )
+            return lista
+
+    def bubbleSortEnergia(lista):
+            n = len(lista)
+    
+            for i in range(n):
+                for j in range(n - 1 - i):
+                    if lista[j].energia > lista[j + 1].energia:
+                        lista[j], lista[j + 1] = (
+                            lista[j + 1],
+                            lista[j]
+                        )
+            return lista
+    def bubbleSortTempo(lista):
+            n = len(lista)
+    
+            for i in range(n):
+                for j in range(n - 1 - i):
+                    if lista[j].tempo > lista[j + 1].tempo:
+                        lista[j], lista[j + 1] = (
+                            lista[j + 1],
+                            lista[j]
+                        )
+            return lista
+
+    def bubbleSortCusto(lista):
+            n = len(lista)
+    
+            for i in range(n):
+                for j in range(n - 1 - i):
+                    if lista[j].custo > lista[j + 1].custo:
+                        lista[j], lista[j + 1] = (
+                            lista[j + 1],
+                            lista[j]
+                        )
+            return lista
+
+    if critOrd == 1:
+        sessoesOrg = bubbleSortID(sessoes)
+        print("\nSessões ordenadas por ID:\n")
+        print(sessoesOrg)
+        inserirLinha()
+        cmndEsc = notNovaEntrada()
+
+    elif critOrd == 2:
+        sessoesOrg = bubbleSortEnergia(sessoes)
+        print("\nSessões ordenadas por Energia:\n")
+        print(sessoesOrg)
+        inserirLinha()
+        cmndEsc = notNovaEntrada()
+
+    elif critOrd == 3:
+        sessoesOrg = bubbleSortTempo(sessoes)
+        print("\nSessões ordenadas por Tempo:\n")
+        print(sessoesOrg)
+        inserirLinha()
+        cmndEsc = notNovaEntrada()
+
+    elif critOrd == 4:
+        sessoesOrg = bubbleSortCusto(sessoes)
+        print("\nSessões ordenadas por Custo:\n")
+        print(sessoesOrg)
+        inserirLinha()
+        cmndEsc = notNovaEntrada()
+
+    else:
+        print("\nCritério inválido! Tente novamente ou escolha outro comando")
+        print("[ 1 ] Tentar novamente\n[ 2 ] Escolher outro comando\n[ 3 ] Sair\n")
+        escolhacmndEsc4 = int(input("Selecione a opção desejada: "))
+
+        if escolhacmndEsc4 == 1:
+            cmndEsc = 4
+        elif escolhacmndEsc4 == 2:
+            inserirLinha()
+            cmndEsc = notNovaEntrada()
+        elif escolhacmndEsc4 == 3:
+            exit()
+        else:
+            escolhacmndEsc4 = int(input("Seleção Inválida! Tente novamente: "))
+
+# ================================================================================
+
+while cmndEsc == 5:
+    print("\nEstatísticas das sessões de recarga:\n")
+    print(f"Total de sessões: {len(sessoes)}\n")
+
+    if len(sessoes) > 0:
+        energiaTotal = sum(sessao.energia for sessao in sessoes)
+        tempoTotal = sum(sessao.tempo for sessao in sessoes)
+        custoTotal = sum(sessao.custo for sessao in sessoes)
+        maiorEnergia = max(sessao.energia for sessao in sessoes)
+        menorEnergia = min(sessao.energia for sessao in sessoes)
+        maiorCusto = max(sessao.custo for sessao in sessoes)
+        menorCusto = min(sessao.custo for sessao in sessoes)
+
+        print(f"Energia total carregada: {energiaTotal:.2f} kWh")
+        print(f"Tempo total de carregamento: {tempoTotal:.2f} horas")
+        print(f"Custo total das recargas: R$ {custoTotal:.2f}\n")
+        print(f"Maior energia consumida em uma sessão: {maiorEnergia:.2f} kWh")
+        print(f"Menor energia consumida em uma sessão: {menorEnergia:.2f} kWh")
+        print(f"Maior custo de uma sessão: R$ {maiorCusto:.2f}")
+        print(f"Menor custo de uma sessão: R$ {menorCusto:.2f}")
+    else:
+        print("Nenhuma sessão registrada ainda.\n")
+
+    inserirLinha()
+    cmndEsc = notNovaEntrada()
 
 
 
 
-    def bubble_sort_id(sessoes):
 
-        n = len(sessoes)
 
-        for i in range(n):
-            for j in range(n - 1 - i):
-                if sessoes[j].id > sessoes[j + 1].id:
-                    sessoes[j], sessoes[j + 1] = (
-                        sessoes[j + 1],
-                        sessoes[j]
-                    )
+
