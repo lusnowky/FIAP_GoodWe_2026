@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>ChargeVolt</title>
+</head>
+<body>
+    <h1>ChargeVolt</h1>
+    <h2>Sessão de Recarga</h2>
+    <h4>Aqui você pode gerenciar suas sessões de recarga do seu carro elétrico</h4>
+
+    <div class="info">
+    <h5>R$ 1,97 / kWh | Tarifa Fixa = R$ 0,89 / kWh</h5>
+    </div>
+
+    <div class="perguntas">
+    <p>Quantos carros você deseja recarregar?</p>
+    <input type="number" id="qntdCarros" placeholder="Exemplo: 2"> <br>
+
+    <div class="botoes">
+        <button onclick="validarBotaoRecarga()">Iniciar Recarga</button>
+    </div>
+    </div>
+
+    <div id="saida"></div>
+
+    <script>
+
+        let preco_kwh = 1.97; // Preço do kWh em reais
+        let tarifa = 0.89;    // Tarifa fixa em reais por sessão
+        let sessoes = [];     // Array para armazenar as sessões de recarga
+        let sessaoAtual = null;
+
+    function validarBotaoRecarga() {
+    let numCarros = document.getElementById("qntdCarros").value;
+
+    if (numCarros === "" || numCarros <= 0) {
+        alert("Informe a quantidade de carros para iniciar a recarga.");
+        return;
+    }
+
+    // Salva a quantidade no localStorage 
+    localStorage.setItem("qntdCarros", numCarros);
+    window.location.href = "recarga.html";
+}
+
+    </script>
+</body>
+</html>
