@@ -220,7 +220,7 @@ while True:
         print("Saindo da Estação de Recarga!")
         inserirLinha()
         print()
-        sys.exit() # CORREÇÃO: Usar sys.exit() evita o erro/trava que a função pura exit() gera em alguns consoles
+        sys.exit()
 
     elif cmndEsc == 1:
         cmndEsc01()
