@@ -1,4 +1,6 @@
-# ATENÇÃO! O CODIGO PRECISA DA IMPLEMENTAÇÃO DO RASPBERRY PI PICO
+import sys
+import time
+
 # ================================================================================
 #                                    VARIÁVEIS
 # ================================================================================
@@ -28,7 +30,7 @@ class InfoCarro:
     
     def __repr__(self):
         return (f"\nID do veículo = {self.idCarro}"
-                f"\nNome do veícuilo = {self.apelido}"
+                f"\nNome do veículo = {self.apelido}"
                 f"\nEnergia Solicitada = {self.dmndVeiculo} kW\n")
 
 # ================================================================================
@@ -124,7 +126,8 @@ def cmndEsc02():
     if len(carros) == 0:
         print("\nNenhum veículo registrado ainda.\n")
     else:
-        print(carros)
+        for carro in carros:
+            print(carro)
     inserirLinha()
 
 
@@ -133,39 +136,50 @@ def cmndEsc02():
 # ================================================================================
 
 def cmndEsc03():
+    global carregando, bloqueada, erro
 
     if len(carros) == 0:
         print("\nNenhum veículo foi registrado para realizar a recarga.\n")
     
     else:
-        
-        demandaTotal = sum(carro.enrgSolicitada for carro in carros)
+        demandaTotal = sum(carro.dmndVeiculo for carro in carros)
         tempoTotal = demandaTotal / potenciaMax
         totalVeiculos = len(carros)
         totalCusto = sum(carro.custo for carro in carros)
 
         if demandaTotal <= potenciaMax:
+            carregando = True
+            bloqueada = False
+            erro = False
         
-            energiaPorcarro = round(potenciaMax / totalVeiculos, 2)
+            energiaPorcarro = round(demandaTotal / totalVeiculos, 2)
 
             print(f"""
-Estatísticas da Recarga:
+Estatísticas da Recarga (Modo Normal):
 
 Energia disponível: {potenciaMax} kW
 Demanda total de energia: {demandaTotal} kW
-Valor total da recarga: R$ {totalCusto}
+Valor total da recarga: R$ {totalCusto:.2f}
 Total de veículos: {totalVeiculos}
 Distribuição de energia por veículo: {energiaPorcarro} kW
 
 Informações dos veículos:
-
-{carros}
 """)
+            for carro in carros:
+                print(f" -> {carro.apelido}: {carro.dmndVeiculo} kW")
+            print()
 
             input("Pressione ENTER para prosseguir com a recarga...")
+            print("Carregando...")
+            time.sleep(1)
             print("Recarga concluída!")
+            carregando = False
 
         else:
+            carregando = True
+            bloqueada = True
+            erro = False
+
             print(f"""
 ======================= !! AVISO !! =======================
 A demanda total de energia excede a energia disponível!!
@@ -175,9 +189,22 @@ Potência máxima disponível ==> {potenciaMax} kW
 Ativando modo de carregamento dinâmico...""")
             input("Pressione ENTER para prosseguir com o carregamento...")
 
-            fatorReducao = round(potenciaMax / demandaTotal, 2)
 
+            fatorReducao = potenciaMax / demandaTotal
+
+            print("\nModulando e rebalanceando a potência dos carregadores:")
+            for carro in carros:
+                potenciaReduzida = round(carro.dmndVeiculo * fatorReducao, 2)
+                print(f" -> Veículo [{carro.apelido}]: Limitado de {carro.dmndVeiculo} kW para {potenciaReduzida} kW")
             
+            print(f"\nPotência total reajustada e estabilizada com segurança em: {potenciaMax} kW")
+            print(f"Valor total a ser cobrado: R$ {totalCusto:.2f}\n")
+            
+            time.sleep(1)
+            print("Carregamento dinâmico concluído com sucesso!")
+            carregando = False
+            bloqueada = False
+
     inserirLinha()
 
 
@@ -193,7 +220,7 @@ while True:
         print("Saindo da Estação de Recarga!")
         inserirLinha()
         print()
-        exit()
+        sys.exit() # CORREÇÃO: Usar sys.exit() evita o erro/trava que a função pura exit() gera em alguns consoles
 
     elif cmndEsc == 1:
         cmndEsc01()
