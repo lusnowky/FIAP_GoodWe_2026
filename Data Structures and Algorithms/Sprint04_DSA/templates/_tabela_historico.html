@@ -1,0 +1,28 @@
+{% if historico %}
+<div class="tabela">
+    <table>
+        <thead>
+            <tr>
+                <th>Recarga</th>
+                <th class="n">Carros</th>
+                <th class="n">Total kWh</th>
+                <th class="n">Total R$</th>
+                <th>Tarifa dinâmica</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for h in historico %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td class="n">{{ h.qntdCarros }}</td>
+                <td class="n">{{ h.totalKwh|num }}</td>
+                <td class="n">{{ h.totalReais|brl }}</td>
+                <td>{{ h.dinamica }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="tabela"><p class="vazio">Nenhuma recarga registrada ainda.</p></div>
+{% endif %}

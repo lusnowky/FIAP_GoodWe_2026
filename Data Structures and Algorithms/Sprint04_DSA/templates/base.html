@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titulo %}ChargeVolt{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="topo">
+        <div class="topo-in">
+            <a class="marca" href="/">
+                <svg width="20" height="26" viewBox="6 3 20 26" aria-hidden="true" style="color: var(--carga)">
+                    <path d="M18 5 8 18h7l-1 9 10-13h-7z" fill="currentColor"/>
+                </svg>
+                <span>ChargeVolt</span>
+            </a>
+            <nav>
+                <a href="/" {% if request.path == '/' or request.path == '/recarga' %}aria-current="page"{% endif %}>Recarga</a>
+                <a href="/sessoes" {% if request.path == '/sessoes' %}aria-current="page"{% endif %}>Sessões</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pagina">
+        {% block conteudo %}{% endblock %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% if lista %}
+{% set maxE = lista|map(attribute='energia')|max %}
+<div class="tabela">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Motorista</th>
+                <th>Modelo</th>
+                <th>Energia</th>
+                <th class="n">Tempo</th>
+                <th class="n">Custo</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for s in lista %}
+            {% set pct = (s.energia / maxE * 100)|round|int %}
+            <tr>
+                <td>{{ s.id }}</td>
+                <td>{{ s.nome }}</td>
+                <td>{{ s.modelo }}</td>
+                <td>
+                    <span class="carga" role="img" aria-label="{{ pct }}% da maior recarga"><i style="width: {{ pct }}%"></i></span>{{ s.energia|num }} kWh
+                </td>
+                <td class="n">{{ s.tempo|tempo }}</td>
+                <td class="n">{{ s.custo|brl }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="tabela"><p class="vazio">Nenhuma sessão registrada ainda. <a href="/">Inicie uma recarga</a> para ver os dados aqui.</p></div>
+{% endif %}

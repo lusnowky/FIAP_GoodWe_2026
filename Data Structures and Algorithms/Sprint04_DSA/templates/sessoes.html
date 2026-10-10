@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block titulo %}Sessões - ChargeVolt{% endblock %}
+
+{% block conteudo %}
+<h1>Sessões</h1>
+<p class="lead">Busque uma sessão pelo ID, ordene a lista e acompanhe os totais.</p>
+
+<div style="height: 28px"></div>
+
+<div class="ferramentas">
+    <form class="painel" action="/sessoes" method="get">
+        <h3>Buscar por ID</h3>
+        <div class="linha-busca">
+            <input type="number" name="buscar" min="1" placeholder="ID da sessão" aria-label="ID da sessão" required>
+            <button class="btn" type="submit">Buscar</button>
+        </div>
+    </form>
+
+    <div class="painel">
+        <h3>Ordenar por</h3>
+        <div class="ordem">
+            <a href="/sessoes" {% if not criterio %}aria-current="true"{% endif %}>Registro</a>
+            <a href="/sessoes?ordenar=id" {% if criterio == 'id' %}aria-current="true"{% endif %}>ID</a>
+            <a href="/sessoes?ordenar=energia" {% if criterio == 'energia' %}aria-current="true"{% endif %}>Energia</a>
+            <a href="/sessoes?ordenar=tempo" {% if criterio == 'tempo' %}aria-current="true"{% endif %}>Tempo</a>
+            <a href="/sessoes?ordenar=custo" {% if criterio == 'custo' %}aria-current="true"{% endif %}>Custo</a>
+        </div>
+    </div>
+</div>
+
+{% if busca %}
+    {% if busca.encontrada %}
+    <div class="aviso aviso-ok">
+        <strong>Sessão {{ busca.sessao.id }} encontrada</strong>
+        <p>{{ busca.sessao.nome }} ({{ busca.sessao.modelo }}): {{ busca.sessao.energia|num }} kWh em {{ busca.sessao.tempo|tempo }}, custo de {{ busca.sessao.custo|brl }}.</p>
+    </div>
+    {% else %}
+    <p class="aviso aviso-erro" role="alert">Nenhuma sessão com esse ID. Confira o número e tente de novo.</p>
+    {% endif %}
+{% endif %}
+
+<h2 style="margin-top: 8px">{{ titulo }}</h2>
+{% include "_tabela_sessoes.html" %}
+
+<h2>Estatísticas</h2>
+{% if stats %}
+<dl class="stats">
+    <div><dt>Total de sessões</dt><dd>{{ stats.total }}</dd></div>
+    <div><dt>Energia total</dt><dd>{{ stats.energiaTotal|num }} kWh</dd></div>
+    <div><dt>Tempo total</dt><dd>{{ stats.tempoTotal|tempo }}</dd></div>
+    <div><dt>Custo total</dt><dd>{{ stats.custoTotal|brl }}</dd></div>
+    <div><dt>Maior energia</dt><dd>{{ stats.maiorEnergia|num }} kWh</dd></div>
+    <div><dt>Menor energia</dt><dd>{{ stats.menorEnergia|num }} kWh</dd></div>
+    <div><dt>Maior custo</dt><dd>{{ stats.maiorCusto|brl }}</dd></div>
+    <div><dt>Menor custo</dt><dd>{{ stats.menorCusto|brl }}</dd></div>
+</dl>
+{% else %}
+<div class="tabela"><p class="vazio">Nenhuma sessão registrada ainda.</p></div>
+{% endif %}
+
+<h2>Histórico de recargas</h2>
+{% include "_tabela_historico.html" %}
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block titulo %}Recarga - ChargeVolt{% endblock %}
+
+{% block conteudo %}
+<h1>Dados da recarga</h1>
+<p class="lead">Preencha o motorista, o modelo e a energia de cada carro.</p>
+
+<div style="height: 28px"></div>
+
+{% if erro %}<p class="aviso aviso-erro" role="alert">{{ erro }}</p>{% endif %}
+
+<form action="/recarga" method="post">
+    <input type="hidden" name="qntd" value="{{ qntd }}">
+
+    {% for i in range(1, qntd + 1) %}
+    <div class="carro">
+        <h3>Carro {{ i }}</h3>
+        <div class="campos">
+            <div>
+                <label for="nome_{{ i }}">Motorista</label>
+                <input id="nome_{{ i }}" type="text" name="nome_{{ i }}" placeholder="Nome do motorista" value="{{ request.form.get('nome_' ~ i, '') }}">
+            </div>
+            <div>
+                <label for="modelo_{{ i }}">Modelo</label>
+                <input id="modelo_{{ i }}" type="text" name="modelo_{{ i }}" placeholder="Modelo do carro" value="{{ request.form.get('modelo_' ~ i, '') }}">
+            </div>
+            <div>
+                <label for="energia_{{ i }}">Energia (kWh)</label>
+                <input id="energia_{{ i }}" type="number" name="energia_{{ i }}" step="any" min="0" placeholder="30" value="{{ request.form.get('energia_' ~ i, '') }}">
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="acoes">
+        <button class="btn" type="submit">Confirmar recargas</button>
+        <a class="btn btn-sec" href="/">Voltar</a>
+        <a class="btn btn-sec" href="/sessoes">Ver sessões</a>
+    </div>
+</form>
+
+{% if resumo %}
+<section class="resultado">
+    <h2>Resumo da sessão</h2>
+
+    {% if resumo.dinamica %}
+    <div class="aviso aviso-alerta">
+        <strong>Tarifa de alta demanda aplicada</strong> ({{ resumo.motivo }}).
+        <p>Preço por kWh: {{ resumo.precoBase|brl }} + {{ resumo.adicional|brl }} = {{ resumo.precoAtual|brl }}. O tempo de recarga pode ser maior que o previsto.</p>
+    </div>
+    {% endif %}
+
+    <div class="total">
+        <div>
+            <span class="rotulo">Total geral</span>
+            <span class="valor">{{ resumo.totalReais|brl }}</span>
+        </div>
+        <div>
+            <span class="rotulo">Tempo previsto da sessão</span>
+            <span class="valor valor-sec">{{ resumo.tempoSessao }}</span>
+        </div>
+    </div>
+    <p class="base">Base do cálculo: {{ potencia }} kW por carro, {{ qntd }} carro(s) em paralelo.</p>
+
+    {% set lista = novas %}
+    {% include "_tabela_sessoes.html" %}
+
+    <h2>Log</h2>
+    <pre class="log">{{ log|join("\n") }}</pre>
+
+    <h2>Histórico de recargas</h2>
+    {% include "_tabela_historico.html" %}
+</section>
+{% endif %}
+{% endblock %}
