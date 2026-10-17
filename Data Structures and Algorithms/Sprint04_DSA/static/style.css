@@ -1,5 +1,3 @@
-/* ChargeVolt — tema escuro */
-
 :root {
     --fundo: #0c0e16;
     --papel: #0c0e16;
@@ -17,10 +15,10 @@
     --erro: #B42318;
     --erro-fundo: #0c0e16;
 
-    /* novos: necessários no tema escuro */
-    --texto-botao: #0c0e16;   /* texto sobre o verde */
-    --erro-texto: #F97066;    /* vermelho legível no fundo escuro */
-    --alerta-texto: #F5C451;  /* âmbar legível no fundo escuro */
+    
+    --texto-botao: #0c0e16;   
+    --erro-texto: #F97066;    
+    --alerta-texto: #F5C451;  
     --log-fundo: #070910;
     --realce: #0c0e16;
 
@@ -321,7 +319,7 @@ tbody tr:hover { background: var(--carga-clara); }
 
 .n { text-align: right; }
 
-/* Barra de carga: quanto a recarga representa da maior da lista */
+
 .carga {
     display: inline-block;
     width: 100px;

@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "author": "Lucas Neves",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": -3, "left": 2.8, "attrs": {} },
+    {
+      "type": "wokwi-pi-pico",
+      "id": "pico",
+      "top": -3.15,
+      "left": -178.8,
+      "attrs": { "env": "micropython-20260406-v1.28.0" }
+    },
+    { "type": "wokwi-led", "id": "led3", "top": 6, "left": 90.2, "attrs": { "color": "yellow" } },
+    {
+      "type": "wokwi-led",
+      "id": "led4",
+      "top": 6,
+      "left": 42.2,
+      "attrs": { "color": "limegreen" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 81.6,
+      "left": 28.25,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 81.6,
+      "left": 76.25,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": 6, "left": 138.2, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 81.6,
+      "left": 124.25,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    { "type": "wokwi-lcd1602", "id": "lcd1", "top": -188.57, "left": -80, "attrs": {} }
+  ],
+  "connections": [
+    [ "bb1:4b.g", "bb1:bn.3", "blue", [ "v0" ] ],
+    [ "bb1:9b.g", "bb1:bn.7", "blue", [ "v0" ] ],
+    [ "pico:GND.1", "bb1:bn.1", "blue", [ "h-38.4", "v182.4", "h190.4" ] ],
+    [ "bb1:10t.e", "pico:GP3", "gold", [ "v144", "h-345.6", "v-182.4" ] ],
+    [ "pico:GP2", "bb1:5t.e", "limegreen", [ "h-48", "v182.4", "h230.4" ] ],
+    [ "pico:GP4", "bb1:15t.e", "red", [ "h-67.2", "v182.4", "h345.6" ] ],
+    [ "bb1:14b.g", "bb1:bn.11", "blue", [ "v0" ] ],
+    [ "bb1:bn.25", "bb1:tn.25", "black", [ "v-1.3", "h11.2", "v-172.8" ] ],
+    [ "lcd1:VSS", "bb1:tn.1", "blue", [ "v0" ] ],
+    [ "bb1:bp.25", "bb1:tp.25", "red", [ "v-0.9", "h20.8", "v-172.8" ] ],
+    [ "pico:GP12", "lcd1:RS", "cyan", [ "h-19.2", "v-192", "h172.5" ] ],
+    [ "pico:GP13", "lcd1:E", "cyan", [ "h-28.8", "v-192", "h201.6" ] ],
+    [ "pico:GP16", "lcd1:D4", "cyan", [ "v0", "h20.4", "v-211.2", "h124.8" ] ],
+    [ "pico:GP17", "lcd1:D5", "cyan", [ "h30", "v-201.6", "h134.4" ] ],
+    [ "led4:A", "bb1:5t.a", "", [ "$bb" ] ],
+    [ "led4:C", "bb1:4t.a", "", [ "$bb" ] ],
+    [ "r1:1", "bb1:4t.b", "", [ "$bb" ] ],
+    [ "r1:2", "bb1:4b.f", "", [ "$bb" ] ],
+    [ "r2:1", "bb1:9t.b", "", [ "$bb" ] ],
+    [ "r2:2", "bb1:9b.f", "", [ "$bb" ] ],
+    [ "r3:1", "bb1:14t.b", "", [ "$bb" ] ],
+    [ "r3:2", "bb1:14b.f", "", [ "$bb" ] ],
+    [ "led1:A", "bb1:15t.a", "", [ "$bb" ] ],
+    [ "led1:C", "bb1:14t.a", "", [ "$bb" ] ],
+    [ "pico:GP18", "lcd1:D6", "cyan", [ "h39.6", "v-182.4", "h134.4", "v-38.4" ] ],
+    [ "pico:GP19", "lcd1:D7", "cyan", [ "h49.2", "v-172.8", "h134.4" ] ],
+    [ "pico:VBUS", "bb1:tp.1", "red", [ "h0" ] ],
+    [ "led3:A", "bb1:10t.a", "", [ "$bb" ] ],
+    [ "led3:C", "bb1:9t.a", "", [ "$bb" ] ],
+    [ "lcd1:VDD", "bb1:tp.2", "red", [ "v57.6", "h0.1" ] ]
+  ],
+  "dependencies": {}
+}
