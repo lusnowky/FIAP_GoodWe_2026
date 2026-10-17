@@ -78,7 +78,7 @@ class InfoCarro:
                 f"\nEnergia Solicitada = {self.dmndVeiculo} kW"
                 f"\nEstado da recarga = {self.estado}\n")
 
-# [NOVO] Veículos já conectados na estação (EV1, EV2 e EV3)
+
 carros.append(InfoCarro(1, "EV1", 45, 2, 2 * (preco_kWh + tarifa)))
 carros.append(InfoCarro(2, "EV2", 20, 2.5, 2.5 * (preco_kWh + tarifa)))
 carros.append(InfoCarro(3, "EV3", 70, 3, 3 * (preco_kWh + tarifa)))
@@ -109,7 +109,6 @@ def msgComandos():
 #                                  ENTRADAS
 # ================================================================================
 
-# [NOVO] Repetem a pergunta até o usuário digitar um número válido
 def lerInteiro(mensagem):
     while True:
         try:
@@ -288,7 +287,7 @@ Informações dos veículos:
             print("LED VERDE ACESO - RECARGA ATIVA")   
             time.sleep(5)
             print("Recarga concluída!")
-            print("Status da estação: RECARGA ATIVA")   # [NOVO]
+            print("Status da estação: RECARGA ATIVA")   
             lcd.clear()
             lcd.move_to(0, 0)
             lcd.putstr("RECARGA")          
@@ -329,7 +328,7 @@ Ativando modo de carregamento dinâmico...""")
 
                 ledAmarelo.value(1)
                 print("LED AMARELO ACESO - RECARGA CONTROLADA")
-                print("Status da estação: RECARGA CONTROLADA")   # [NOVO]
+                print("Status da estação: RECARGA CONTROLADA")   
                 lcd.clear()
                 lcd.move_to(0, 0)
                 lcd.putstr("RECARGA")
