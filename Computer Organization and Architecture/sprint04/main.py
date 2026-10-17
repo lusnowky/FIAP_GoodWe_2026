@@ -365,7 +365,7 @@ Ativando modo de carregamento dinâmico...""")
                         print(f" -> Veículo [{carro.apelido}] ({carro.bateria}%): 0 kW - EM ESPERA")
 
                 print(f"\nPotência total utilizada: {potenciaMax - restante} kW de {potenciaMax} kW\n")
-                print("Status da estação: RECARGA LIMITADA")   # [NOVO]
+                print("Status da estação: RECARGA LIMITADA")   
 
                 lcd.clear()
                 lcd.move_to(0, 0)
